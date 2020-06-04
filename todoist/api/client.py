@@ -50,9 +50,8 @@ class TodoistAPI:
         }
         return self._post('projects', payload=data)
 
-    def get_tasks(self):
-        # TODO: method needed for assignment
-        return
+    def get_tasks_by_project(self, project_id=None):
+        return self._get('tasks', project_id=project_id)
 
     def open_task(self):
         # TODO: method needed for assignment

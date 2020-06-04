@@ -1,6 +1,8 @@
+import pytest
+
 from todoist.app.pages.LoginPage import LoginPage
 
-
+@pytest.mark.stable
 def test_create_project(driver, todoist_api, todoist_test_user):
     TEST_PROJECT_NAME = 'test_project_creation'
 

@@ -19,11 +19,15 @@ def driver(config):
 
 @pytest.fixture
 def todoist_api(config):
+    if not config.TODOIST_TOKEN:
+        pytest.fail('Unable to find valid Todoist API Token in config file')
     api = TodoistAPI(config.TODOIST_TOKEN)
     yield api
 
 
 @pytest.fixture
 def todoist_test_user(config):
+    if not (config.TODOIST_EMAIL and config.TODOIST_PASSWORD):
+        pytest.fail('Incomplete credentials. Kindly add Todoist credentials to config.py file.')
     credentials = {'email': config.TODOIST_EMAIL, 'password': config.TODOIST_PASSWORD}
     return credentials
