@@ -2,7 +2,7 @@ import pytest
 
 from todoist.app.pages.LoginPage import LoginPage
 
-@pytest.mark.indevelopment
+@pytest.mark.stable
 def test_create_task(driver, todoist_api, todoist_test_user):
     TEST_TASK_NAME = 'test_task_creation'
     TEST_PROJECT_NAME = 'test_task_project'

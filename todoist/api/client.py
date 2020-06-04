@@ -30,7 +30,11 @@ class TodoistAPI:
                                      self.BASE_URL+endpoint,
                                      headers=self._request_header(),
                                      **args)
-        return json.loads(resp.text)
+
+        if resp.text:
+            return json.loads(resp.text)
+        else:
+            return resp
 
     def _get(self, endpoint, args=None, payload=None, **kwargs):
         if args:
@@ -41,6 +45,11 @@ class TodoistAPI:
         if args:
             kwargs.update(args)
         return self._request('POST', endpoint, payload, kwargs)
+
+    def _delete(self, endpoint, args=None, payload=None, **kwargs):
+        if args:
+            kwargs.update(args)
+        return self._request('DELETE', endpoint, payload, kwargs)
 
     def create_project(self, name, parent=None, color=None):
         data = {
@@ -53,6 +62,14 @@ class TodoistAPI:
     def get_tasks_by_project(self, project_id=None):
         return self._get('tasks', project_id=project_id)
 
-    def open_task(self):
-        # TODO: method needed for assignment
-        return
+    def get_task(self, task_id):
+        return self._get('tasks/{}'.format(task_id))
+
+    def reopen_task(self, task_id):
+        # Bug with API found when using usual header with additional information.
+        # Tasks gets reopened but api returns response 400, custom request used instead.
+        return requests.post(self.BASE_URL + "tasks/{0}/reopen".format(task_id),
+                             headers={"Authorization": "Bearer {}".format(self.token)})
+
+    def delete_project(self, project_id):
+        return self._delete('projects/{}'.format(project_id))

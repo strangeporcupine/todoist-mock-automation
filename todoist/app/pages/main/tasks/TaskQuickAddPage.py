@@ -1,10 +1,8 @@
-import time
-
 from todoist.app.pages.main.MainPage import MainPage
 from todoist.app.utils.BasePage import BasePage
 
 
-class QuickAddItemPage(BasePage):
+class TaskQuickAddPage(BasePage):
 
     TASK_NAME_TEXTBOX = 'android:id/message'
     ADD_TASK_BUTTON = 'android:id/button1'
