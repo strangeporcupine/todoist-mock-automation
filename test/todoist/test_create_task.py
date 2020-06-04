@@ -28,3 +28,6 @@ def test_create_task(driver, todoist_api, todoist_test_user):
     tasks = todoist_api.get_tasks_by_project(project_id)
 
     assert TEST_TASK_NAME in [t['content'] for t in tasks]
+
+    # Cleanup
+    todoist_api.delete_project_by_name(TEST_PROJECT_NAME)

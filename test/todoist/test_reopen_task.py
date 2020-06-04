@@ -45,3 +45,6 @@ def test_reopen_task(driver, todoist_api, todoist_test_user):
     tasks_2 = todoist_api.get_tasks_by_project(project_id)
 
     assert TEST_TASK_NAME in [t['content'] for t in tasks_2]
+
+    # Cleanup
+    todoist_api.delete_project_by_name(TEST_PROJECT_NAME)

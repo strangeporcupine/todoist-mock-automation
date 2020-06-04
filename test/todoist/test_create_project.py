@@ -23,3 +23,6 @@ def test_create_project(driver, todoist_api, todoist_test_user):
         .get_project_list()
 
     assert TEST_PROJECT_NAME in projects_list
+
+    # Cleanup
+    todoist_api.delete_project_by_name(TEST_PROJECT_NAME)

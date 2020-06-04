@@ -71,5 +71,14 @@ class TodoistAPI:
         return requests.post(self.BASE_URL + "tasks/{0}/reopen".format(task_id),
                              headers={"Authorization": "Bearer {}".format(self.token)})
 
-    def delete_project(self, project_id):
+    def get_all_projects(self):
+        return self._get('projects')
+
+    def delete_project_by_id(self, project_id):
         return self._delete('projects/{}'.format(project_id))
+
+    def delete_project_by_name(self, project_name):
+        projects = self.get_all_projects()
+        for proj in projects:
+            if project_name == proj['name']:
+                self.delete_project_by_id(proj['id'])
