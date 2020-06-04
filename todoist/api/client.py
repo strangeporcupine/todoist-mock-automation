@@ -30,7 +30,6 @@ class TodoistAPI:
                                      self.BASE_URL+endpoint,
                                      headers=self._request_header(),
                                      **args)
-        print(resp)
         return json.loads(resp.text)
 
     def _get(self, endpoint, args=None, payload=None, **kwargs):
