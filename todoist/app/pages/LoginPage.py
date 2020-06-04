@@ -1,4 +1,4 @@
-from todoist.app.pages.HomePage import HomePage
+from todoist.app.pages.main.MainPage import MainPage
 from todoist.app.utils.BasePage import BasePage
 
 
@@ -28,4 +28,4 @@ class LoginPage(BasePage):
 
     def click_login(self):
         self.driver.find_element_by_id(self.LOGIN_BUTTON).click()
-        return HomePage(self.driver)
+        return MainPage(self.driver)
