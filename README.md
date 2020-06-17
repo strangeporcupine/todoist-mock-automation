@@ -1,4 +1,4 @@
-# Todoist Automation Test Assignment
+# Todoist Mock Automation
 Initial framework for scalable automation tests for Todoist App
 
 ## Prerequiste 
